@@ -19,7 +19,7 @@ if (!is_null($events['events'])) {
 			// Build message to reply back
 			$messages = [
 				'type' => 'text',
-				'text' => "สวัสดี".$text
+				'text' => "สวัสดี User ID ของคุณ คือ ".$text
 			];
 
 			// Make a POST Request to Messaging API to reply to sender
