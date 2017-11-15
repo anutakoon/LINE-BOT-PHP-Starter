@@ -11,27 +11,27 @@ if (!is_null($events['events'])) {
 		// Reply only when message sent is in 'text' format
 		if ($event['type'] == 'message' && $event['message']['type'] == 'text') {
 		
-			if (strpos($source, 'logout') === 0) {
-				$agentcode = str_replace("logout","", $event['message']);
-				$urlLogout = 'http://www.apifixit.psisat.com/ARMJsonWcfService/GetAgents.svc/api/agentlogout/'+$agentcode;
-				$dataLogout = [
-				];
-				$postLogout = json_encode($dataLogout);
-				$headersLogout = array('Content-Type: application/json');
-				$chLogout = curl_init($urlLogout);
-				curl_setopt($chLogout, CURLOPT_CUSTOMREQUEST, "POST");
-				curl_setopt($chLogout, CURLOPT_RETURNTRANSFER, true);
-				curl_setopt($chLogout, CURLOPT_POSTFIELDS, $postLogout);
-				curl_setopt($chLogout, CURLOPT_HTTPHEADER, $headersLogout);
-				curl_setopt($chLogout, CURLOPT_FOLLOWLOCATION, 1);
-				$resultLgout = curl_exec($chLogout);
-				curl_close($chLogout);
-							echo $resultLgout . "\r\n";
+// 			if (strpos($source, 'logout') === 0) {
+// 				$agentcode = str_replace("logout","", $event['message']);
+// 				$urlLogout = 'http://www.apifixit.psisat.com/ARMJsonWcfService/GetAgents.svc/api/agentlogout/'+$agentcode;
+// 				$dataLogout = [
+// 				];
+// 				$postLogout = json_encode($dataLogout);
+// 				$headersLogout = array('Content-Type: application/json');
+// 				$chLogout = curl_init($urlLogout);
+// 				curl_setopt($chLogout, CURLOPT_CUSTOMREQUEST, "POST");
+// 				curl_setopt($chLogout, CURLOPT_RETURNTRANSFER, true);
+// 				curl_setopt($chLogout, CURLOPT_POSTFIELDS, $postLogout);
+// 				curl_setopt($chLogout, CURLOPT_HTTPHEADER, $headersLogout);
+// 				curl_setopt($chLogout, CURLOPT_FOLLOWLOCATION, 1);
+// 				$resultLgout = curl_exec($chLogout);
+// 				curl_close($chLogout);
+// 							echo $resultLgout . "\r\n";
 
-			}
+// 			}
 			
-			else
-			{
+// 			else
+// 			{
 			// Get text sent
 			$text = $event['source']['userId'];
 			// Get replyToken
@@ -59,7 +59,7 @@ if (!is_null($events['events'])) {
 			curl_close($ch);
 							echo $result . "\r\n";
 
-			}
+// 			}
 			
 		}
 	}
