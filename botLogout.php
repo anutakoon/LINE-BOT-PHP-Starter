@@ -14,7 +14,7 @@ if (!is_null($events['events'])) {
 		
 			if ($event['message']['text'] == "logout" ) {
 				$agentcode = str_replace("logout","", $event['message']['text']);
-				$urlLogout = 'http://www.apifixit.psisat.com/ARMJsonWcfService/GetAgents.svc/api/agentlogout/'.$agentcode;
+				$urlLogout = 'http://www.apifixit.psisat.com/ARMJsonWcfService/GetAgents.svc/api/agentlogout/001a';
 				$dataLogout = [
 				];
 				$postLogout = json_encode($dataLogout);
