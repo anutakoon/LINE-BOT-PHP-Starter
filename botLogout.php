@@ -12,7 +12,8 @@ if (!is_null($events['events'])) {
 		// Reply only when message sent is in 'text' format
 		if ($event['type'] == 'message' && $event['message']['type'] == 'text') {
 		
-			if (strpos(  $event['message']['text'], 'logout' ) !== false ) ) {
+			$messageReceive = $event['message']['text'];
+			if (strpos( $messageReceive , 'logout' ) == true ) {
 				$agentcode = str_replace("logout","", $event['message']['text']);
 				$urlLogout = 'http://www.apifixit.psisat.com/ARMJsonWcfService/GetAgents.svc/api/agentlogout/'.$agentcode;
 				$dataLogout = [
