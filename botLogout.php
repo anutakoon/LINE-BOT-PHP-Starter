@@ -4,6 +4,7 @@ $access_token = 'uBiUUhIHsyf+CY+2JjrhO3h9yHO4pdwXCxQNoSPGfD9intmHZnOT02braDpML9F
 $content = file_get_contents('php://input');
 // Parse JSON
 $events = json_decode($content, true);
+$message_send = "";
 // Validate parsed JSON data
 if (!is_null($events['events'])) {
 	// Loop through each event
@@ -26,20 +27,25 @@ if (!is_null($events['events'])) {
 				curl_setopt($chLogout, CURLOPT_FOLLOWLOCATION, 1);
 				$resultLgout = curl_exec($chLogout);
 				curl_close($chLogout);
+				$message_send = $resultLgout;
 							echo $resultLgout . "\r\n";
 
 			}
 			
-			else
-			{
+// 			else
+// 			{
 			// Get text sent
 			$text = $event['source']['userId'];
 			// Get replyToken
 			$replyToken = $event['replyToken'];
 			// Build message to reply back
+			if($message_send == "")
+			{
+			$message_send = "สวัสดี User ID ของคุณ คือ ".$text;	
+			}
 			$messages = [
 				'type' => 'text',
-				'text' => "สวัสดี User ID ของคุณ คือ ".$text
+				'text' => $message_send//"สวัสดี User ID ของคุณ คือ ".$text
 			];
 			// Make a POST Request to Messaging API to reply to sender
 			$url = 'https://api.line.me/v2/bot/message/reply';
@@ -59,7 +65,7 @@ if (!is_null($events['events'])) {
 			curl_close($ch);
 							echo $result . "\r\n";
 
-			}
+// 			}
 			
 		}
 	}
