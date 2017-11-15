@@ -14,7 +14,9 @@ if (!is_null($events['events'])) {
 		
 			$messageReceive = $event['message']['text'];
 			$detectString = "logout";
-			if (strpos( $messageReceive ,$detectString  ) == true ) {
+			$str = 'This is Main String';
+ 
+			if (strpos($messageReceive, 'logout') !== false) {
 				$agentcode = str_replace("logout","", $event['message']['text']);
 				$urlLogout = 'http://www.apifixit.psisat.com/ARMJsonWcfService/GetAgents.svc/api/agentlogout/'.$agentcode;
 				$dataLogout = [
