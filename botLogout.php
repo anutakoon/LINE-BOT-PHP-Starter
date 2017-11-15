@@ -26,8 +26,12 @@ if (!is_null($events['events'])) {
 				curl_setopt($chLogout, CURLOPT_FOLLOWLOCATION, 1);
 				$resultLgout = curl_exec($chLogout);
 				curl_close($chLogout);
+							echo $resultLgout . "\r\n";
+
 			}
 			
+			else
+			{
 			// Get text sent
 			$text = $event['source']['userId'];
 			// Get replyToken
@@ -53,7 +57,10 @@ if (!is_null($events['events'])) {
 			curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
 			$result = curl_exec($ch);
 			curl_close($ch);
-			echo $result . "\r\n";
+							echo $result . "\r\n";
+
+			}
+			
 		}
 	}
 }
