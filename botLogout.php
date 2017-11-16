@@ -32,7 +32,25 @@ if (!is_null($events['events'])) {
 							echo $resultLgout . "\r\n";
 
 			}
-			
+			else if (strpos($messageReceive, 'logout:') !== false) {
+				$agentcode = str_replace("logout:","", $event['message']['text']);
+				$urlLogout = 'http://www.apifixit.psisat.com/ARMJsonWcfService/GetAgents.svc/api/agentlogout/'.$agentcode;
+				$dataLogout = [
+				];
+				$postLogout = json_encode($dataLogout);
+				$headersLogout = array('Content-Type: application/json');
+				$chLogout = curl_init($urlLogout);
+				curl_setopt($chLogout, CURLOPT_CUSTOMREQUEST, "POST");
+				curl_setopt($chLogout, CURLOPT_RETURNTRANSFER, true);
+				curl_setopt($chLogout, CURLOPT_POSTFIELDS, $postLogout);
+				curl_setopt($chLogout, CURLOPT_HTTPHEADER, $headersLogout);
+				curl_setopt($chLogout, CURLOPT_FOLLOWLOCATION, 1);
+				$resultLgout = curl_exec($chLogout);
+				curl_close($chLogout);
+				$message_send = $resultLgout;
+							echo $resultLgout . "\r\n";
+
+			}
 // 			else
 // 			{
 			// Get text sent
